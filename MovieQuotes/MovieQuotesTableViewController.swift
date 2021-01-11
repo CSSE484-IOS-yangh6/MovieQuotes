@@ -22,7 +22,33 @@ class MovieQuotesTableViewController: UITableViewController {
     }
     
     @objc func showAddQuoteDialog() {
-        //print("You pressed the add button!")
+        let alertController = UIAlertController(title: "Create a new movie quote",
+                                                message: "",
+                                                preferredStyle: .alert)
+        //Configure
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Quote"
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Movie"
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Cancel",
+                                                style: .cancel,
+                                                handler: nil))
+        alertController.addAction(UIAlertAction(title: "Create Quote",
+                                                style: .default)
+        { (action) in
+            let quoteTextField = alertController.textFields![0] as UITextField
+            let movieTextField = alertController.textFields![1] as UITextField
+            let newMovieQuote = MovieQuote(quote: quoteTextField.text!,
+                                           movie: movieTextField.text!)
+            self.movieQuotes.insert(newMovieQuote, at: 0)
+            self.tableView.reloadData()
+        })
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
