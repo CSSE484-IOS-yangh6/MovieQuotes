@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>450511618950-c9bd8a6vdju6b24upfbkb026fkl2qdi3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.450511618950-c9bd8a6vdju6b24upfbkb026fkl2qdi3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB1j4-bQBLagQ18Jk7BQ_wWoJRJgPEgaYc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>450511618950</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.rose-hulman.yangh6.MovieQuotes</string>
+	<key>PROJECT_ID</key>
+	<string>yangh6-movie-quotes-ios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yangh6-movie-quotes-ios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:450511618950:ios:28b380c411301484a36207</string>
+</dict>
+</plist>
