@@ -9,6 +9,8 @@ import UIKit
 
 class MovieQuotesTableViewController: UITableViewController {
     let movieQuoteCellIdentifier = "MovieQuoteCell"
+    let detailSegueIdentifier = "DetailSegue"
+    
     var movieQuotes = [MovieQuote]()
     
     override func viewDidLoad() {
@@ -72,4 +74,11 @@ class MovieQuotesTableViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == detailSegueIdentifier {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                (segue.destination as! MovieQuoteDetailViewController).movieQuote = movieQuotes[indexPath.row]
+            }
+        }
+    }
 }
