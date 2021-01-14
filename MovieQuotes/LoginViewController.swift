@@ -13,7 +13,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     let showListSegueIdentifier = "ShowListSegue"
     
     override func viewDidLoad() {
