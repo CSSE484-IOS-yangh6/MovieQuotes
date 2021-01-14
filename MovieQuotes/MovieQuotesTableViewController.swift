@@ -55,7 +55,7 @@ class MovieQuotesTableViewController: UITableViewController {
                 self.movieQuotes.removeAll()
                 querySnapshot.documents.forEach { (documentSnapshot) in
 //                    print(documentSnapshot.documentID)
-//                    print(documentSnapshot.data())
+                    //print(documentSnapshot.data())
                     self.movieQuotes.append(MovieQuote(documentSnapshot: documentSnapshot))
                 }
                 self.tableView.reloadData()
@@ -119,6 +119,11 @@ class MovieQuotesTableViewController: UITableViewController {
         cell.textLabel?.text = movieQuotes[indexPath.row].quote
         cell.detailTextLabel?.text = movieQuotes[indexPath.row].movie
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let movieQuote = movieQuotes[indexPath.row]
+        return Auth.auth().currentUser!.uid == movieQuote.author
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
