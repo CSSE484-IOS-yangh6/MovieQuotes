@@ -93,12 +93,12 @@
 				E4AA5DD525AC3CED00D1ECC9 /* MovieQuote.swift */,
 				E4AA5DD125AC3ADB00D1ECC9 /* MovieQuotesTableViewController.swift */,
 				E45CD92B25AC4D16005BF240 /* MovieQuoteDetailViewController.swift */,
+				E417786E25B0C0FD004B3FD3 /* LoginViewController.swift */,
 				E4AA5DBB25A6E8E800D1ECC9 /* Main.storyboard */,
 				E4AA5DBE25A6E8E900D1ECC9 /* Assets.xcassets */,
 				E4AA5DC025A6E8E900D1ECC9 /* LaunchScreen.storyboard */,
 				E4AA5DC325A6E8E900D1ECC9 /* Info.plist */,
 				E45CD92F25AC9E30005BF240 /* GoogleService-Info.plist */,
-				E417786E25B0C0FD004B3FD3 /* LoginViewController.swift */,
 			);
 			path = MovieQuotes;
 			sourceTree = "<group>";

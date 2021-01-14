@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -15,9 +16,39 @@ class LoginViewController: UIViewController {
     
     let showListSegueIdentifier = "ShowListSegue"
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailTextField.placeholder = "Email"
+        passwordTextField.placeholder = "Password"
+    }
+    
     @IBAction func pressedSignInNewUser(_ sender: Any) {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+            if let error = error {
+                print("Error creating new user for Email/Password \(error)")
+                return
+            }
+            
+            print("It worked!!! A new user is created and now signed in.")
+            //print(authResult?.user)
+            self.performSegue(withIdentifier: self.showListSegueIdentifier, sender: self)
+        }
     }
     
     @IBAction func pressedLogInExistingUser(_ sender: Any) {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            if let error = error {
+                print("Error signing in existing user \(error)")
+                return
+            }
+            print("Signing in with existing user worked!")
+            self.performSegue(withIdentifier: self.showListSegueIdentifier, sender: self)
+        }
     }
 }
