@@ -15,6 +15,7 @@ class MovieQuotesTableViewController: UITableViewController {
     var movieQuoteListener: ListenerRegistration!
     
     var movieQuotes = [MovieQuote]()
+    var isShowingAllQuotes = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,16 @@ class MovieQuotesTableViewController: UITableViewController {
         { (action) in
             self.showAddQuoteDialog()
         })
+        
+        alertController.addAction(UIAlertAction(title: self.isShowingAllQuotes ? "Show only my quotes" : "Show all quotes",
+                                                style: .default)
+        { (action) in
+            // Toggle the show all vs show mine mode.
+            self.isShowingAllQuotes = !self.isShowingAllQuotes
+            // Update the list
+            self.startListening()
+        })
+        
         alertController.addAction(UIAlertAction(title: "Cancel",
                                                 style: .cancel,
                                                 handler: nil))
@@ -67,16 +78,27 @@ class MovieQuotesTableViewController: UITableViewController {
             // Already signed in
             print("You are already signed in.")
         }
-        
-        
         //tableView.reloadData()
+        startListening()
+    }
+    
+    func startListening() {
+        if movieQuoteListener != nil {
+            movieQuoteListener.remove()
+        }
         
-        movieQuoteListener = movieQuotesRef.order(by: "created", descending: true).limit(to: 50).addSnapshotListener { (querySnapshot, error) in
+        var query = movieQuotesRef.order(by: "created", descending: true).limit(to: 50)
+        
+        if !isShowingAllQuotes {
+            query = query.whereField("author", isEqualTo: Auth.auth().currentUser!.uid)
+        }
+        
+        movieQuoteListener = query.addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 self.movieQuotes.removeAll()
                 querySnapshot.documents.forEach { (documentSnapshot) in
 //                    print(documentSnapshot.documentID)
-                    //print(documentSnapshot.data())
+//                    print(documentSnapshot.data())
                     self.movieQuotes.append(MovieQuote(documentSnapshot: documentSnapshot))
                 }
                 self.tableView.reloadData()
@@ -85,7 +107,6 @@ class MovieQuotesTableViewController: UITableViewController {
                 return
             }
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
