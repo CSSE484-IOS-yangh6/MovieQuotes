@@ -108,6 +108,20 @@
                                     <action selector="pressedLogInExistingUser:" destination="R4o-2I-Ig0" eventType="touchUpInside" id="iqH-XT-r8t"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c35-DG-7iT">
+                                <rect key="frame" x="66.5" y="446.5" width="281" height="57"/>
+                                <color key="backgroundColor" red="0.50196078431372548" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="DoW-QX-AwU"/>
+                                    <constraint firstAttribute="width" constant="281" id="Oib-ub-0Aw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Sign in with Rosefire"/>
+                                <connections>
+                                    <action selector="pressedRosefireLogin:" destination="R4o-2I-Ig0" eventType="touchUpInside" id="kCR-MT-TlU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kdu-WC-V8J"/>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -115,6 +129,8 @@
                             <constraint firstItem="kdu-WC-V8J" firstAttribute="trailing" secondItem="Mks-WK-b0e" secondAttribute="trailing" constant="20" id="4QN-CR-FRV"/>
                             <constraint firstItem="Rcj-i5-nST" firstAttribute="leading" secondItem="kdu-WC-V8J" secondAttribute="leading" constant="20" id="8Iy-90-gRy"/>
                             <constraint firstItem="Rcj-i5-nST" firstAttribute="top" secondItem="Mks-WK-b0e" secondAttribute="bottom" constant="30" id="8Yj-jG-UGr"/>
+                            <constraint firstItem="c35-DG-7iT" firstAttribute="centerY" secondItem="kdu-WC-V8J" secondAttribute="centerY" id="JEM-NF-Y6X"/>
+                            <constraint firstItem="c35-DG-7iT" firstAttribute="centerX" secondItem="kdu-WC-V8J" secondAttribute="centerX" id="TmL-gk-Jhl"/>
                             <constraint firstItem="VhQ-sx-LL3" firstAttribute="top" secondItem="Rcj-i5-nST" secondAttribute="bottom" constant="28" id="Zhd-GT-Cjr"/>
                             <constraint firstItem="VhQ-sx-LL3" firstAttribute="leading" secondItem="kdu-WC-V8J" secondAttribute="leading" constant="20" id="amy-tt-Kj6"/>
                             <constraint firstItem="Mks-WK-b0e" firstAttribute="leading" secondItem="kdu-WC-V8J" secondAttribute="leading" constant="20" id="bfy-y1-bS7"/>
@@ -133,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CeH-Kt-DPx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="128"/>
+            <point key="canvasLocation" x="-52.173913043478265" y="127.90178571428571"/>
         </scene>
         <!--Movie Quote Detail View Controller-->
         <scene sceneID="acc-Dt-q3M">
