@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import Rosefire
 
 class LoginViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     let showListSegueIdentifier = "ShowListSegue"
+    let REGISTRY_TOKEN = "f1e2b8c2-85c9-4454-9e0a-db89b1c42c33" // DONE: go visit rosefire.csse.rose-hulman.edu
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,5 +64,26 @@ class LoginViewController: UIViewController {
     
     @IBAction func pressedRosefireLogin(_ sender: Any) {
         print("rosefire")
+        
+        Rosefire.sharedDelegate().uiDelegate = self // This should be your view controller
+        Rosefire.sharedDelegate().signIn(registryToken: REGISTRY_TOKEN) { (err, result) in
+          if let err = err {
+            print("Rosefire sign in error! \(err)")
+            return
+          }
+          //print("Result = \(result!.token!)")
+          print("Result = \(result!.username!)")
+          print("Result = \(result!.name!)")
+          print("Result = \(result!.email!)")
+          print("Result = \(result!.group!)")
+//          Auth.auth().signIn(withCustomToken: result!.token) { (authResult, error) in
+//            if let error = error {
+//              print("Firebase sign in error! \(error)")
+//              return
+//            }
+//            // User is signed in using Firebase!
+//          }
+        }
+
     }
 }
