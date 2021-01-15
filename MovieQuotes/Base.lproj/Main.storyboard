@@ -122,6 +122,14 @@
                                     <action selector="pressedRosefireLogin:" destination="R4o-2I-Ig0" eventType="touchUpInside" id="kCR-MT-TlU"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxI-aU-IWM" customClass="GIDSignInButton">
+                                <rect key="frame" x="66" y="534" width="282" height="57"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="Hx4-GR-953"/>
+                                    <constraint firstAttribute="width" constant="282" id="LBb-Yt-eTn"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kdu-WC-V8J"/>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -129,8 +137,10 @@
                             <constraint firstItem="kdu-WC-V8J" firstAttribute="trailing" secondItem="Mks-WK-b0e" secondAttribute="trailing" constant="20" id="4QN-CR-FRV"/>
                             <constraint firstItem="Rcj-i5-nST" firstAttribute="leading" secondItem="kdu-WC-V8J" secondAttribute="leading" constant="20" id="8Iy-90-gRy"/>
                             <constraint firstItem="Rcj-i5-nST" firstAttribute="top" secondItem="Mks-WK-b0e" secondAttribute="bottom" constant="30" id="8Yj-jG-UGr"/>
+                            <constraint firstItem="vxI-aU-IWM" firstAttribute="top" secondItem="c35-DG-7iT" secondAttribute="bottom" constant="30.5" id="ATX-A4-Es8"/>
                             <constraint firstItem="c35-DG-7iT" firstAttribute="centerY" secondItem="kdu-WC-V8J" secondAttribute="centerY" id="JEM-NF-Y6X"/>
                             <constraint firstItem="c35-DG-7iT" firstAttribute="centerX" secondItem="kdu-WC-V8J" secondAttribute="centerX" id="TmL-gk-Jhl"/>
+                            <constraint firstItem="vxI-aU-IWM" firstAttribute="centerX" secondItem="kdu-WC-V8J" secondAttribute="centerX" id="XbY-EQ-sYa"/>
                             <constraint firstItem="VhQ-sx-LL3" firstAttribute="top" secondItem="Rcj-i5-nST" secondAttribute="bottom" constant="28" id="Zhd-GT-Cjr"/>
                             <constraint firstItem="VhQ-sx-LL3" firstAttribute="leading" secondItem="kdu-WC-V8J" secondAttribute="leading" constant="20" id="amy-tt-Kj6"/>
                             <constraint firstItem="Mks-WK-b0e" firstAttribute="leading" secondItem="kdu-WC-V8J" secondAttribute="leading" constant="20" id="bfy-y1-bS7"/>
@@ -144,6 +154,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Mks-WK-b0e" id="waY-3b-qRR"/>
                         <outlet property="passwordTextField" destination="Rcj-i5-nST" id="WPW-lS-SIv"/>
+                        <outlet property="signInButton" destination="vxI-aU-IWM" id="Pz6-jB-fIg"/>
                         <segue destination="23o-dB-p25" kind="show" identifier="ShowListSegue" id="cBc-32-wy8"/>
                     </connections>
                 </viewController>
