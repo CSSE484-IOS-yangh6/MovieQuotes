@@ -20,7 +20,7 @@ class MovieQuotesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = editButtonItem
+        //navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "☰",
                                                             style: .plain,
                                                             target: self,
@@ -90,6 +90,15 @@ class MovieQuotesTableViewController: UITableViewController {
         //            // Already signed in
         //            print("You are already signed in.")
         //        }
+        
+        authStateListenerHandle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if Auth.auth().currentUser == nil {
+                print("No user, go back to login page")
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                print("signed in. Stay on this page. User: \(Auth.auth().currentUser!.uid)")
+            }
+        })
         
         
         //tableView.reloadData()
