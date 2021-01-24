@@ -91,14 +91,6 @@ class MovieQuotesTableViewController: UITableViewController {
         //            print("You are already signed in.")
         //        }
         
-        authStateListenerHandle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-            if Auth.auth().currentUser == nil {
-                print("No user, go back to login page")
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                print("signed in. Stay on this page")
-            }
-        })
         
         //tableView.reloadData()
         startListening()
