@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: GIDSignInButton!
     
+    var rosefireName: String?
+    
     let showListSegueIdentifier = "ShowListSegue"
     let REGISTRY_TOKEN = "f1e2b8c2-85c9-4454-9e0a-db89b1c42c33" // DONE: go visit rosefire.csse.rose-hulman.edu
     
@@ -33,6 +35,7 @@ class LoginViewController: UIViewController {
             print("Someone is already signed in! Just move on!")
             self.performSegue(withIdentifier: self.showListSegueIdentifier, sender: self)
         }
+        rosefireName = nil
     }
     
     @IBAction func pressedSignInNewUser(_ sender: Any) {
@@ -71,25 +74,33 @@ class LoginViewController: UIViewController {
         
         Rosefire.sharedDelegate().uiDelegate = self // This should be your view controller
         Rosefire.sharedDelegate().signIn(registryToken: REGISTRY_TOKEN) { (err, result) in
-          if let err = err {
-            print("Rosefire sign in error! \(err)")
-            return
-          }
-          //print("Result = \(result!.token!)")
-          print("Result = \(result!.username!)")
-          print("Result = \(result!.name!)")
-          print("Result = \(result!.email!)")
-          print("Result = \(result!.group!)")
-            
-          Auth.auth().signIn(withCustomToken: result!.token) { (authResult, error) in
-            if let error = error {
-              print("Firebase sign in error! \(error)")
-              return
+            if let err = err {
+                print("Rosefire sign in error! \(err)")
+                return
             }
-            // User is signed in using Firebase!
-            self.performSegue(withIdentifier: self.showListSegueIdentifier, sender: self)
-          }
+            //print("Result = \(result!.token!)")
+            print("Result = \(result!.username!)")
+            print("Result = \(result!.name!)")
+            self.rosefireName = result!.name!
+            print("Result = \(result!.email!)")
+            print("Result = \(result!.group!)")
+            
+            Auth.auth().signIn(withCustomToken: result!.token) { (authResult, error) in
+                if let error = error {
+                    print("Firebase sign in error! \(error)")
+                    return
+                }
+                // User is signed in using Firebase!
+                self.performSegue(withIdentifier: self.showListSegueIdentifier, sender: self)
+            }
         }
-
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showListSegueIdentifier {
+            print("Checking for user \(Auth.auth().currentUser!.uid)")
+            UserManager.shared.addNewUserMabye(uid: Auth.auth().currentUser!.uid, name: rosefireName ?? Auth.auth().currentUser!.displayName, photoUrl: Auth.auth().currentUser!.photoURL?.absoluteString)
+        }
     }
 }

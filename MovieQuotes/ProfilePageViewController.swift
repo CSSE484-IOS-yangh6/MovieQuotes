@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfilePageViewController: UIViewController {
     
@@ -15,16 +16,21 @@ class ProfilePageViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        UserManager.shared.beginListening(uid: Auth.auth().currentUser!.uid, changeListener: updateView)
         displayNameTextField.addTarget(self, action: #selector(handleNameEdit), for: .editingChanged)
     }
     
     @objc func handleNameEdit(){
         if let name = displayNameTextField.text {
-            print(name)
+            UserManager.shared.updateName(name: name)
         }
     }
     
     @IBAction func pressedEditPhoto(_ sender: Any) {
         
+    }
+    
+    func updateView() {
+        displayNameTextField.text = UserManager.shared.name
     }
 }
