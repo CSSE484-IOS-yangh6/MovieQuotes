@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 class SideNavViewController: UIViewController {
     
     @IBAction func pressedGoToProfilePage(_ sender: Any) {
-        
+        dismiss(animated: false)
+        tableViewController.performSegue(withIdentifier: tableViewController.profilePageSegueIdentifier, sender: tableViewController)
     }
     
     @IBAction func pressedShowAllQuotes(_ sender: Any) {
@@ -26,11 +28,17 @@ class SideNavViewController: UIViewController {
     }
     
     @IBAction func pressedDeleteQuotes(_ sender: Any) {
-        
+        tableViewController.setEditing(!tableViewController.isEditing, animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func pressedSignOut(_ sender: Any) {
-        
+        dismiss(animated: false, completion: nil)
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("sign out error")
+        }
     }
     
     var tableViewController: MovieQuotesTableViewController {

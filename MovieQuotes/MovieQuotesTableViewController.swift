@@ -11,6 +11,7 @@ import Firebase
 class MovieQuotesTableViewController: UITableViewController {
     let movieQuoteCellIdentifier = "MovieQuoteCell"
     let detailSegueIdentifier = "DetailSegue"
+    let profilePageSegueIdentifier = "ProfilePageSegue"
     var movieQuotesRef: CollectionReference!
     var authStateListenerHandle: AuthStateDidChangeListenerHandle!
     var movieQuoteListener: ListenerRegistration!

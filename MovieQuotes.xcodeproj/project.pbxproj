@@ -19,6 +19,7 @@
 		E4AA5DD225AC3ADB00D1ECC9 /* MovieQuotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AA5DD125AC3ADB00D1ECC9 /* MovieQuotesTableViewController.swift */; };
 		E4AA5DD625AC3CED00D1ECC9 /* MovieQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AA5DD525AC3CED00D1ECC9 /* MovieQuote.swift */; };
 		E4BCD6BA25BD712900BE0D81 /* SideNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCD6B925BD712900BE0D81 /* SideNavViewController.swift */; };
+		E4BCD6BD25BD7A1000BE0D81 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BCD6BC25BD7A1000BE0D81 /* ProfilePageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E4AA5DD125AC3ADB00D1ECC9 /* MovieQuotesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieQuotesTableViewController.swift; sourceTree = "<group>"; };
 		E4AA5DD525AC3CED00D1ECC9 /* MovieQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieQuote.swift; sourceTree = "<group>"; };
 		E4BCD6B925BD712900BE0D81 /* SideNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavViewController.swift; sourceTree = "<group>"; };
+		E4BCD6BC25BD7A1000BE0D81 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				E4AA5DC325A6E8E900D1ECC9 /* Info.plist */,
 				E45CD92F25AC9E30005BF240 /* GoogleService-Info.plist */,
 				E4BCD6B925BD712900BE0D81 /* SideNavViewController.swift */,
+				E4BCD6BC25BD7A1000BE0D81 /* ProfilePageViewController.swift */,
 			);
 			path = MovieQuotes;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				E4AA5DD625AC3CED00D1ECC9 /* MovieQuote.swift in Sources */,
 				E4AA5DD225AC3ADB00D1ECC9 /* MovieQuotesTableViewController.swift in Sources */,
 				E4AA5DB825A6E8E800D1ECC9 /* SceneDelegate.swift in Sources */,
+				E4BCD6BD25BD7A1000BE0D81 /* ProfilePageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
