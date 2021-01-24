@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class ProfilePageViewController: UIViewController {
     
@@ -55,6 +56,32 @@ class ProfilePageViewController: UIViewController {
             ImageUtils.load(imageView: profilePhotoImageView, from: UserManager.shared.photoUrl)
         }
     }
+    
+    func uploadImage(_ image: UIImage) {
+        if let imageData = ImageUtils.resize(image: image) {
+            
+            let storageRef = Storage.storage().reference().child("Users").child(Auth.auth().currentUser!.uid)
+            
+            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print("Error Uploading Image: \(error)")
+                    return
+                }
+                storageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        print("error download URL: \(error)")
+                        return
+                    }
+                    if let downloadUrl = url {
+                        print("Got the download URL: \(downloadUrl)")
+                        UserManager.shared.updatePhotoUrl(photoUrl: downloadUrl.absoluteString)
+                    }
+                }
+            }
+        } else {
+            print("Error getting image data.")
+        }
+    }
 }
 
 extension ProfilePageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -65,9 +92,11 @@ extension ProfilePageViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage? {
-            profilePhotoImageView.image = image
+            //profilePhotoImageView.image = image
+            uploadImage(image)
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage? {
-            profilePhotoImageView.image = image
+            //profilePhotoImageView.image = image
+            uploadImage(image)
         }
         picker.dismiss(animated: true, completion: nil)
     }
