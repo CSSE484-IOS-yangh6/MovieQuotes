@@ -62,7 +62,7 @@ class ProfilePageViewController: UIViewController {
             
             let storageRef = Storage.storage().reference().child("Users").child(Auth.auth().currentUser!.uid)
             
-            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            let uploadTask = storageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let error = error {
                     print("Error Uploading Image: \(error)")
                     return
@@ -77,6 +77,11 @@ class ProfilePageViewController: UIViewController {
                         UserManager.shared.updatePhotoUrl(photoUrl: downloadUrl.absoluteString)
                     }
                 }
+            }
+            
+            uploadTask.observe(.progress) { (snapshot) in
+                guard let progress = snapshot.progress else { return }
+                print(progress)
             }
         } else {
             print("Error getting image data.")
