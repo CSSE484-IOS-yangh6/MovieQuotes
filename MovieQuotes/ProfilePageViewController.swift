@@ -15,7 +15,6 @@ class ProfilePageViewController: UIViewController {
     
     @IBOutlet weak var displayNameTextField: UITextField!
     
-    
     override func viewDidLoad() {
         
         displayNameTextField.addTarget(self, action: #selector(handleNameEdit), for: .editingChanged)
