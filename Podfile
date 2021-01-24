@@ -15,5 +15,6 @@ target 'MovieQuotes' do
   pod 'Rosefire', :git => 'https://ada.csse.rose-hulman.edu/rosefire/ios-sdk.git'
   pod 'GoogleSignIn'
   pod 'SideMenu'
+  pod 'Kingfisher', '~> 6.0'
 
 end

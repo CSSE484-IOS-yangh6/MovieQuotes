@@ -16,8 +16,17 @@ class ProfilePageViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        UserManager.shared.beginListening(uid: Auth.auth().currentUser!.uid, changeListener: updateView)
+        
         displayNameTextField.addTarget(self, action: #selector(handleNameEdit), for: .editingChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserManager.shared.beginListening(uid: Auth.auth().currentUser!.uid, changeListener: updateView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UserManager.shared.stopListening()
     }
     
     @objc func handleNameEdit(){
@@ -27,10 +36,39 @@ class ProfilePageViewController: UIViewController {
     }
     
     @IBAction func pressedEditPhoto(_ sender: Any) {
-        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            print("On Real Device")
+            imagePickerController.sourceType = .camera
+        } else {
+            print("Simulator")
+            imagePickerController.sourceType = .photoLibrary
+        }
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     func updateView() {
         displayNameTextField.text = UserManager.shared.name
+        if UserManager.shared.photoUrl.count > 0 {
+            ImageUtils.load(imageView: profilePhotoImageView, from: UserManager.shared.photoUrl)
+        }
+    }
+}
+
+extension ProfilePageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as! UIImage? {
+            profilePhotoImageView.image = image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage? {
+            profilePhotoImageView.image = image
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }
